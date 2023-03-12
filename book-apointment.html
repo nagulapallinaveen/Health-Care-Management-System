@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Health Care System - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/nav-bar.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/appointment-form.css">
+</head>
+
+<body>
+    <div class="back-ground-img">
+        <div class="header">
+            <div class="container-fluid tb-color">
+                <div class="top-bar clearfix">
+                    <div>
+                        <img width="240px;" src="images/logo.png" alt="Logo">
+                        <h1>Health Care System</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="fix-menu">
+                    <nav class="navbar navbar-inverse">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown"><a href="index.html"><span class="home"><i
+                                                    class="fa fa-fw fa-home"></i></span>About Us</a></li>
+                                    <li class="dropdown"><a href="book-apointment.html"><span><i
+                                                    class="fa fa-search"></i></span>Book Appointment</a></li>
+                                    <li class="dropdown"><a href="login.html"><span><i
+                                                    class="fa fa-file-text"></i></span>Login</a></li>
+                                    <li class="dropdown"><a href="contact-us.html"><span><i
+                                                    class="fa fa-file-text"></i></span>Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card"></div>
+            <div class="card">
+                <h1 class="title"> Appointment Form
+                    <div class="close"></div>
+                </h1>
+                <form method="get" action="user-page.html">
+                    <div class="input-container">
+                        <input type="text" id="#{label}" required="required" />
+                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Name </label>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="input-container">
+                        <input type="email" id="#{label}" required="required" />
+                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Email </label>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="input-container">
+                        <label for="dropdown" class="dropdown-label"></label>
+                        <select id="dropdown" class="dropdown-select">
+                            <option value="">Choose an Doctor</option>
+                            <option value="link1">Naveen</option>
+                            <option value="link2">Meghanjali</option>
+                            <option value="link3">Gagan</option>
+                        </select>
+                    </div>
+                    <div class="input-container">
+                        <label for="date-input"></label>
+		                <input type="date" id="date-input" name="date-input" required="required" />
+                    </div>
+                    <div class="input-container">
+                        <input type="textarea" id="#{label}" value="" required="required" />
+                        <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Your Message</label>
+                        <div class="bar"></div>
+                    </div>
+                    <div style="overflow: hidden !important;" class="button-container">
+                        <button><span>Book &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
