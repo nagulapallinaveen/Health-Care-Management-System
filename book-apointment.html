@@ -10,40 +10,26 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="css/appointment-form.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
     <div class="back-ground-img">
-        <div class="header">
-            <div class="container-fluid tb-color">
-                <div class="top-bar clearfix">
-                    <div>
-                        <img width="240px;" src="images/logo.png" alt="Logo">
-                        <h1>Health Care System</h1>
-                    </div>
-                </div>
+        <header>
+            <div class="logo">
+                <img src="./images/logo.png" alt="Your Logo">
+                <h1>Health Care System</h1>
             </div>
-            <div class="clearfix">
-                <div class="fix-menu">
-                    <nav class="navbar navbar-inverse">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li class="dropdown"><a href="index.html"><span class="home"><i
-                                                    class="fa fa-fw fa-home"></i></span>About Us</a></li>
-                                    <li class="dropdown"><a href="book-apointment.html"><span><i
-                                                    class="fa fa-search"></i></span>Book Appointment</a></li>
-                                    <li class="dropdown"><a href="login.html"><span><i
-                                                    class="fa fa-file-text"></i></span>Login</a></li>
-                                    <li class="dropdown"><a href="contact-us.html"><span><i
-                                                    class="fa fa-file-text"></i></span>Contact Us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><span class="home"><i class="fa fa-fw fa-home"></i></span>About Us</a></li>
+                    <li><a href="book-apointment.html"><span><i class="fa fa-search"></i></span>Book Appointment</a>
+                    </li>
+                    <li><a href="login.html"><span><i class="fa fa-file-text"></i></span>Login</a></li>
+                    <li><a href="contact-us.html"><span><i class="fa fa-file-text"></i></span>Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="container">
             <div class="card"></div>
             <div class="card">
@@ -72,7 +58,7 @@
                     </div>
                     <div class="input-container">
                         <label for="date-input"></label>
-		                <input type="date" id="date-input" name="date-input" required="required" />
+                        <input type="date" id="date-input" name="date-input" required="required" />
                     </div>
                     <div class="input-container">
                         <input type="textarea" id="#{label}" value="" required="required" />
@@ -85,10 +71,10 @@
                 </form>
             </div>
         </div>
-        <footer>
-            <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
-        </footer>
     </div>
+    <footer>
+        <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
+    </footer>
 </body>
 
 </html>
