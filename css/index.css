@@ -52,11 +52,3 @@ body {
     text-align: center;
     flex-basis: 100%;
 }
-
-/* Footer Styles */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
