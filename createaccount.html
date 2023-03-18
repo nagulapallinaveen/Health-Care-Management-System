@@ -39,8 +39,18 @@
             </h1>
             <form method="get" action="user-page.html">
                 <div class="input-container">
+                    <input type="text" id="#{label}" required="required" />
+                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; First Name </label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="#{label}" required="required" />
+                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Last Name </label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
                     <input type="email" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Username/Email </label>
+                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Email </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container">
@@ -48,16 +58,16 @@
                     <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Password</label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container">
+                    <input type="password" id="#{label}" value="" required="required" />
+                    <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
+                    <div class="bar"></div>
+                </div>
                 <div class="button-container">
-                    <button><span>Login &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
+                    <button><span>Create Account &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
                 </div>
                 
-                <div>
-                    <a href="forgotpassword.html" class="forgot-password" >Forgot Password?</a>
-                </div>
-                <div>
-                    <a href="createaccount.html" class="createaccount"> Create account</a>
-                </div>
+                
             </form>
         </div>
     </div>
