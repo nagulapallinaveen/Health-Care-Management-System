@@ -474,15 +474,14 @@ input:-webkit-autofill:active {
     width: auto;
   }
 }
-  .forgot-password{
-    
-    color:white;
-    position: relative;
-    left:50px;
-    top:15px;
-  }
-  .createaccount{
-    color:white;
-    position:relative;
-    left: 275px;
-  }
+
+.forgot-password {
+  position: relative;
+  text-align: center;
+  margin-top: 20 px;
+  top: 15px;
+}
+
+.forgot-password a {
+  color: white;
+}
