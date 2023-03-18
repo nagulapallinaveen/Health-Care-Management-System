@@ -474,3 +474,15 @@ input:-webkit-autofill:active {
     width: auto;
   }
 }
+  .forgot-password{
+    
+    color:white;
+    position: relative;
+    left:50px;
+    top:15px;
+  }
+  .createaccount{
+    color:white;
+    position:relative;
+    left: 275px;
+  }
