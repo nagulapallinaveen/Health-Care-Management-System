@@ -9,7 +9,7 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("../images/canada-usa copy 2.jpeg");
+  background-image: url("../images/canada-usa copy 2.jpeg") !important;
   margin: 0px;
 }
 
