@@ -39,48 +39,62 @@
                 <h1 class="title"> Appointment Form
                     <div class="close"></div>
                 </h1>
-                <form>
+                <form id="bookappointmentform">
                     <div class="input-container">
-                        <input type="text" id="#{label}" required="required" />
-                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; First Name </label>
+                        <input type="text" id="fname" onkeyup="validatefname()" required="required" />
+                        <label for="fname"><i class="fa fa-user"></i> &nbsp; First Name </label>
                         <div class="bar"></div>
                     </div>
+                    <div class="input-container"><span id="fnameError" style="color:red;"></span></div>
+                    
                     <div class="input-container">
-                        <input type="text" id="#{label}" required="required" />
-                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Last Name </label>
+                        <input type="text" id="lname" onkeyup="validatelname()" required="required" />
+                        <label for="lname"><i class="fa fa-user"></i> &nbsp; Last Name </label>
                         <div class="bar"></div>
                     </div>
+                    <div class="input-container"><span id="lnameError" style="color:red;"></span></div>
+
                     <div class="input-container">
-                        <input type="text" id="#{label}" required="required" />
-                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Email </label>
+                        <input type="text" id="email" onkeyup="validateemail()" required="required" />
+                        <label for="email"><i class="fa fa-user"></i> &nbsp; Email </label>
                         <div class="bar"></div>
                     </div>
+                    <div class="input-container"><span id="emailError" style="color:red;"></span></div>
+
                     <div class="input-container">
-                        <input type="text" id="#{label}" required="required" />
-                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Age </label>
+                        <input type="number" id="age" onkeyup="validateage()" required="required" />
+                        <label for="age"><i class="fa fa-user"></i> &nbsp; Age </label>
                         <div class="bar"></div>
                     </div>
+                    <div class="input-container"><span id="ageError" style="color:red;"></span></div>
+
                     <div class="input-container">
-                        <input type="text" id="#{label}" required="required" />
-                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Phone Number </label>
+                        <input type="tel" id="phoneno" maxlength="10" onkeyup="validatephoneno()" required="required" />
+                        <label for="phoneno"><i class="fa fa-user"></i> &nbsp; Phone Number </label>
                         <div class="bar"></div>
                     </div>
+                    <div class="input-container"><span id="phonenoError" style="color:red;"></span></div>
+
                     <div class="input-container">
-                        <input type="text" id="#{label}" required="required" />
-                        <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Address </label>
+                        <input type="text" id="address" onkeyup="validateaddress()" required="required" />
+                        <label for="address"><i class="fa fa-user"></i> &nbsp; Address </label>
                         <div class="bar"></div>
                     </div>
+                    <div class="input-container"><span id="addressError" style="color:red;"></span></div>
+
                     <div class="input-container">
-                        <label for="dropdown" class="dropdown-label"></label>
-                        <select id="dropdown" class="dropdown-select">
+                        <label for="genderdropdown" class="dropdown-label"></label>
+                        <select id="genderdropdown" onchange="validategender()" class="dropdown-select">
                             <option value="">Select Gender</option>
                             <option value="link1">Male</option>
                             <option value="link2">Female</option>
                         </select>
                     </div>
+                    <div class="input-container"><span id="genderError" style="color:red;"></span></div>
+
                     <div class="input-container">
-                        <label for="dropdown" class="dropdown-label"></label>
-                        <select id="dropdown" class="dropdown-select">
+                        <label for="doctordropdown" class="dropdown-label"></label>
+                        <select id="doctordropdown" onchange="validatedoctor()" class="dropdown-select">
                             <option value="">Choose a Doctor</option>
                             <option value="Naveen - Pediatrician">Naveen - Pediatrician</option>
                             <option value="Meghanjali - Cardiologist">Meghanjali - Cardiologist</option>
@@ -91,13 +105,15 @@
                             <option value="Kushal - Gastroenterologist">Kushal - Gastroenterologist</option>
                         </select>
                     </div>
+                    <div class="input-container"><span id="doctorError" style="color:red;"></span></div>
+
                     <div class="input-container">
                         <div style="color: white">Choose Appointment Date & Time</div>
                         <label for="datetime-local"></label>
                         <input type="datetime-local" id="datetime-local" name="datetime-local" required="required" />
                     </div>
                     <div class="input-container">
-                        <input type="textarea" id="#{label}" value="" required="required" />
+                        <input type="textarea" id="#{label}" value=""/>
                         <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Your Message</label>
                         <div class="bar"></div>
                     </div>
@@ -107,10 +123,109 @@
                 </form>
             </div>
         </div>
-        <!-- <footer>
-            <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
-        </footer> -->
     </div>
+    <script>
+            function validatefname() {
+                var fnameValue = document.getElementById("fname").value;
+                var fnameError = document.getElementById("fnameError");
+                if (/\d/.test(fnameValue)) {
+                    fnameError.textContent="First Name should not contain numericals";
+                    return;
+                }
+                if(!fnameValue){
+                    fnameError.textContent="First Name is required";
+                    return;
+                    
+                }
+                fnameError.textContent=""
+                
+            }
+            function validatelname() {
+                var lnameValue = document.getElementById("lname").value;
+                var lnameError = document.getElementById("lnameError");
+                if (/\d/.test(lnameValue)) {
+                    lnameError.textContent="Last Name should not contain numericals";
+                    return;
+                }
+                if(!lnameValue) {
+                    lnameError.textContent="Last Name is required";
+                    return;
+                }
+                lnameError.textContent=""
+            }
+            function validateemail(){
+                var emailid=document.getElementById("email").value;
+                const emailtest=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(!emailtest.test(emailid)){
+                    emailError.textContent="Please enter a valid email address";
+                    return;
+
+                }
+                if(!emailid) {
+                    emailError.textContent="First Name is required";
+                    return;
+                }
+                emailError.textContent=""
+
+            }
+            function validateage(){
+                var ageValue=document.getElementById("age").value;
+                if(!ageValue){
+                    ageError.textContent="Age is required";
+                    return;
+
+                }
+                ageError.textContent=""
+            }
+            function validatephoneno(){
+                var phonenoValue=document.getElementById("phoneno").value;
+                if(!phonenoValue){
+                    phonenoError.textContent="Phone no is required";
+                    return;
+
+                }
+                if(isNaN(phonenoValue)){
+                    phonenoError.textContent="Phone no should be numeric";
+                    return;
+
+                }
+                phonenoError.textContent=""
+            }
+            function validateaddress(){
+                var addressValue=document.getElementById("address").value;
+                if(!addressValue){
+                    addressError.textContent="Address is required";
+                    return;
+
+                }
+                
+                addressError.textContent=""
+            }
+            function validategender(){
+                var genderValue=document.getElementById("genderdropdown").value;
+                if(genderValue===""){
+                    genderError.textContent="Please select an option from dropdown";
+                    return;
+
+                }
+                
+                genderError.textContent=""
+            }
+            function validatedoctor(){
+                var doctorValue=document.getElementById("doctordropdown").value;
+                if(doctorValue===""){
+                    doctorError.textContent="Please select an option from dropdown";
+                    return;
+
+                }
+                
+                doctorError.textContent=""
+            }
+
+
+
+
+    </script>
     <footer>
         <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
     </footer>
