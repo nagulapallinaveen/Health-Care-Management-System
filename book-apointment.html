@@ -127,6 +127,8 @@
                     <div style="overflow: hidden !important;" class="button-container">
                         <button><span>Schedule Appointment &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
                     </div>
+                    <br>
+                    <div class="input-container" ><b><span id="success" style="color:green;"></b></div>
                 </form>
             </div>
         </div>
@@ -135,7 +137,7 @@
             const datenow = new Date();
             const currentDateTime = datenow.toISOString().slice(0, 16);
             document.getElementById('datetime-local').setAttribute('min', currentDateTime);
-            
+
             function validatefname() {
                 var fnameValue = document.getElementById("fname").value;
                 var fnameError = document.getElementById("fnameError");
@@ -285,7 +287,7 @@
                 doctorContainer.classList.remove("error");
             }
             const form = document.getElementById('bookappointmentform');
-
+            const success=document.getElementById('success');
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); 
                 console.log(document.getElementById("fname").value);
@@ -293,20 +295,20 @@
                 console.log(document.getElementById("email").value);
                 console.log(document.getElementById("age").value);
                 console.log(document.getElementById("phoneno").value);
-;                console.log(document.getElementById("address").value);
+                console.log(document.getElementById("address").value);
                 console.log(document.getElementById("genderdropdown").value);
                 console.log(document.getElementById("doctordropdown").value);
                 console.log(document.getElementById("datetime-local").value);
                 console.log(document.getElementById("msg").value);
                 form.reset();
-
+                success.textContent="Form Successfully Submitted"
 
             });
 
             function validateform() { 
                 return true; 
             }
-
+            
 
 
 
