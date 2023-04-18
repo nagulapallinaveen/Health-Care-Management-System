@@ -67,7 +67,7 @@
                     <div class="input-container"><span id="emailError" style="color:red;"></span></div>
 
                     <div class="input-container" id="age-container">
-                        <input type="number" id="age" onkeyup="validateage()" required="required" />
+                        <input type="number" id="age" onkeyup="validateage()" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="required" />
                         <label for="age"><i class="fa fa-user"></i> &nbsp; Age </label>
                         <div class="bar"></div>
                     </div>
@@ -132,6 +132,10 @@
         </div>
     </div>
     <script>
+            const datenow = new Date();
+            const currentDateTime = datenow.toISOString().slice(0, 16);
+            document.getElementById('datetime-local').setAttribute('min', currentDateTime);
+            
             function validatefname() {
                 var fnameValue = document.getElementById("fname").value;
                 var fnameError = document.getElementById("fnameError");
@@ -283,17 +287,19 @@
             const form = document.getElementById('bookappointmentform');
 
             form.addEventListener('submit', function(event) {
-                // event.preventDefault(); 
-                console.log(document.getElementById("fname").value)
-                console.log(document.getElementById("lname").value)
-                console.log(document.getElementById("email").value)
-                console.log(document.getElementById("age").value)
-                console.log(document.getElementById("phoneno").value)
-                console.log(document.getElementById("address").value)
-                console.log(document.getElementById("genderdropdown").value)
-                console.log(document.getElementById("doctordropdown").value)
-                console.log(document.getElementById("datetime-local").value)
-                console.log(document.getElementById("msg").value)
+                event.preventDefault(); 
+                console.log(document.getElementById("fname").value);
+                console.log(document.getElementById("lname").value);
+                console.log(document.getElementById("email").value);
+                console.log(document.getElementById("age").value);
+                console.log(document.getElementById("phoneno").value);
+;                console.log(document.getElementById("address").value);
+                console.log(document.getElementById("genderdropdown").value);
+                console.log(document.getElementById("doctordropdown").value);
+                console.log(document.getElementById("datetime-local").value);
+                console.log(document.getElementById("msg").value);
+                form.reset();
+
 
             });
 
