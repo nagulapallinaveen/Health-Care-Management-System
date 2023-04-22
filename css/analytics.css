@@ -1,0 +1,113 @@
+/* Mobile Styles */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .about-section {
+    padding: 30px;
+  }
+
+  #barChart,
+  #pieChart,
+  #horizontalBarChart,
+  #specialtyChart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Extra Small Devices */
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  body {
+    font-size: 16px;
+  }
+
+  .about-section {
+    padding: 30px;
+  }
+
+  #barChart,
+  #pieChart,
+  #horizontalBarChart,
+  #specialtyChart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Small Devices */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  body {
+    font-size: 18px;
+  }
+
+  .about-section {
+    padding: 50px;
+  }
+
+  #barChart,
+  #pieChart,
+  #horizontalBarChart,
+  #specialtyChart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Medium Devices */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  body {
+    font-size: 20px;
+  }
+
+  .about-section {
+    padding: 70px;
+  }
+
+  #barChart,
+  #pieChart,
+  #horizontalBarChart,
+  #specialtyChart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Large Devices */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  body {
+    font-size: 22px;
+  }
+
+  .about-section {
+    padding: 90px;
+  }
+
+  #barChart,
+  #pieChart,
+  #horizontalBarChart,
+  #specialtyChart {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Extra Large Devices */
+@media only screen and (min-width: 1400px) {
+  body {
+    font-size: 24px;
+  }
+
+  .about-section {
+    padding: 110px;
+  }
+
+  #barChart,
+  #pieChart,
+  #horizontalBarChart,
+  #specialtyChart {
+    max-width: 100%;
+    height: auto;
+  }
+}
