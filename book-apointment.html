@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="css/dropdown.css">
     <link rel="stylesheet" href="css/appointment-form.css">
     <link rel="stylesheet" href="css/footer.css">
+    <style>
+        .input-container.error .bar{
+            background-color: red ; 
+        }
+    </style>
 </head>
 
 <body>
@@ -39,60 +44,61 @@
                 <h1 class="title"> Appointment Form
                     <div class="close"></div>
                 </h1>
-                <form id="bookappointmentform">
-                    <div class="input-container">
+                <form id="bookappointmentform" onsubmit="return validateform()">
+                    <div class="input-container" id="fname-container">
                         <input type="text" id="fname" onkeyup="validatefname()" required="required" />
                         <label for="fname"><i class="fa fa-user"></i> &nbsp; First Name </label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="fnameError" style="color:red;"></span></div>
                     
-                    <div class="input-container">
+                    <div class="input-container" id="lname-container">
                         <input type="text" id="lname" onkeyup="validatelname()" required="required" />
                         <label for="lname"><i class="fa fa-user"></i> &nbsp; Last Name </label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="lnameError" style="color:red;"></span></div>
 
-                    <div class="input-container">
+                    <div class="input-container" id="email-container">
                         <input type="text" id="email" onkeyup="validateemail()" required="required" />
                         <label for="email"><i class="fa fa-user"></i> &nbsp; Email </label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="emailError" style="color:red;"></span></div>
 
-                    <div class="input-container">
-                        <input type="number" id="age" onkeyup="validateage()" required="required" />
+                    <div class="input-container" id="age-container">
+                        <input type="number" id="age" onkeyup="validateage()" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="required" />
                         <label for="age"><i class="fa fa-user"></i> &nbsp; Age </label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="ageError" style="color:red;"></span></div>
 
-                    <div class="input-container">
-                        <input type="tel" id="phoneno" maxlength="10" onkeyup="validatephoneno()" required="required" />
+                    <div class="input-container" id="phoneno-container">
+                        <input type="tel" id="phoneno" maxlength="10" onkeyup="validatephoneno()" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="required" />
                         <label for="phoneno"><i class="fa fa-user"></i> &nbsp; Phone Number </label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="phonenoError" style="color:red;"></span></div>
 
-                    <div class="input-container">
+                    <div class="input-container" id="address-container">
                         <input type="text" id="address" onkeyup="validateaddress()" required="required" />
                         <label for="address"><i class="fa fa-user"></i> &nbsp; Address </label>
                         <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="addressError" style="color:red;"></span></div>
 
-                    <div class="input-container">
+                    <div class="input-container" id="gender-container">
                         <label for="genderdropdown" class="dropdown-label"></label>
                         <select id="genderdropdown" onchange="validategender()" class="dropdown-select">
                             <option value="">Select Gender</option>
                             <option value="link1">Male</option>
                             <option value="link2">Female</option>
                         </select>
+                        <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="genderError" style="color:red;"></span></div>
 
-                    <div class="input-container">
+                    <div class="input-container"  id="doctor-container">
                         <label for="doctordropdown" class="dropdown-label"></label>
                         <select id="doctordropdown" onchange="validatedoctor()" class="dropdown-select">
                             <option value="">Choose a Doctor</option>
@@ -104,124 +110,205 @@
                             <option value="Akshay - Dermatologist">Akshay - Dermatologist</option>
                             <option value="Kushal - Gastroenterologist">Kushal - Gastroenterologist</option>
                         </select>
+                        <div class="bar"></div>
                     </div>
                     <div class="input-container"><span id="doctorError" style="color:red;"></span></div>
 
-                    <div class="input-container">
+                    <div class="input-container" id="date-container">
                         <div style="color: white">Choose Appointment Date & Time</div>
                         <label for="datetime-local"></label>
-                        <input type="datetime-local" id="datetime-local" name="datetime-local" required="required" />
+                        <input type="datetime-local" id="datetime-local" name="datetime-local" required="required"/>
                     </div>
                     <div class="input-container">
-                        <input type="textarea" id="#{label}" value=""/>
-                        <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Your Message</label>
+                        <input type="textarea" id="msg" value=""/>
+                        <label for="msg"><i class="fa fa-lock"></i> &nbsp; Your Message</label>
                         <div class="bar"></div>
                     </div>
                     <div style="overflow: hidden !important;" class="button-container">
                         <button><span>Schedule Appointment &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
                     </div>
+                    <br>
+                    <div class="input-container" ><b><span id="success" style="color:green;"></b></div>
                 </form>
             </div>
         </div>
     </div>
     <script>
+            const datenow = new Date();
+            const currentDateTime = datenow.toISOString().slice(0, 16);
+            document.getElementById('datetime-local').setAttribute('min', currentDateTime);
+
             function validatefname() {
                 var fnameValue = document.getElementById("fname").value;
                 var fnameError = document.getElementById("fnameError");
+                var fnameContainer=document.getElementById("fname-container");
                 if (/\d/.test(fnameValue)) {
                     fnameError.textContent="First Name should not contain numericals";
+                    fnameContainer.classList.add("error");
+                    
                     return;
                 }
                 if(!fnameValue){
                     fnameError.textContent="First Name is required";
+                    fnameContainer.classList.add("error");
                     return;
                     
                 }
-                fnameError.textContent=""
+                fnameError.textContent="";
+                fnameContainer.classList.remove("error");
                 
             }
+
             function validatelname() {
                 var lnameValue = document.getElementById("lname").value;
                 var lnameError = document.getElementById("lnameError");
+                var lnameContainer=document.getElementById("lname-container");
                 if (/\d/.test(lnameValue)) {
                     lnameError.textContent="Last Name should not contain numericals";
+                    lnameContainer.classList.add("error");
                     return;
                 }
                 if(!lnameValue) {
                     lnameError.textContent="Last Name is required";
+                    lnameContainer.classList.add("error");
                     return;
                 }
-                lnameError.textContent=""
+                lnameError.textContent="";
+                lnameContainer.classList.remove("error");
             }
+
             function validateemail(){
                 var emailid=document.getElementById("email").value;
+                var emailError=document.getElementById("emailError");
+                var emailContainer=document.getElementById("email-container");
                 const emailtest=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if(!emailtest.test(emailid)){
                     emailError.textContent="Please enter a valid email address";
+                    emailContainer.classList.add("error");
                     return;
 
                 }
                 if(!emailid) {
                     emailError.textContent="First Name is required";
+                    emailContainer.classList.add("error");
                     return;
                 }
-                emailError.textContent=""
+                emailError.textContent="";
+                emailContainer.classList.remove("error");
 
             }
             function validateage(){
-                var ageValue=document.getElementById("age").value;
-                if(!ageValue){
-                    ageError.textContent="Age is required";
-                    return;
+                var ageValue = document.getElementById('age');
+                var ageError=document.getElementById("ageError");
+                var ageContainer=document.getElementById("age-container");
 
-                }
-                ageError.textContent=""
+                ageValue.addEventListener('input', () => {
+                    if (ageValue.value.length > 3) {
+                    ageValue.value = ageValue.value.substring(0, 3);
+
+                    }
+                    if(ageValue.value.length==0){
+                        ageError.textContent="Age is required";
+                        ageContainer.classList.add("error");
+                        return;
+                        
+                    }
+                    ageError.textContent=""
+                    ageContainer.classList.remove("error");
+                });
+                
+                
             }
+
             function validatephoneno(){
-                var phonenoValue=document.getElementById("phoneno").value;
-                if(!phonenoValue){
-                    phonenoError.textContent="Phone no is required";
-                    return;
+                var phonenoValue=document.getElementById("phoneno");
+                var phonenoError=document.getElementById("phonenoError");
+                var phonenoContainer=document.getElementById("phoneno-container");
+                phonenoValue.addEventListener('input',()=>{
+                    if(phonenoValue.value.length<10){
+                        phonenoError.textContent="Phone no must be 10 digits long";
+                        phonenoContainer.classList.add("error");
+                        return;
 
-                }
-                if(isNaN(phonenoValue)){
-                    phonenoError.textContent="Phone no should be numeric";
-                    return;
+                    }
+                    if(!phonenoValue.value){
+                        phonenoError.textContent="Phone no is required";
+                        phonenoContainer.classList.add("error");
+                        return;
 
-                }
-                phonenoError.textContent=""
+                    }
+                    
+                    phonenoError.textContent=""
+                    phonenoContainer.classList.remove("error");
+                });
             }
             function validateaddress(){
                 var addressValue=document.getElementById("address").value;
+                var addressError=document.getElementById("addressError");
+                var addressContainer=document.getElementById("address-container");
                 if(!addressValue){
                     addressError.textContent="Address is required";
+                    addressContainer.classList.add("error");
                     return;
 
                 }
                 
-                addressError.textContent=""
+                addressError.textContent="";
+                addressContainer.classList.remove("error");
             }
+
             function validategender(){
                 var genderValue=document.getElementById("genderdropdown").value;
+                var genderError=document.getElementById("genderError");
+                var genderContainer=document.getElementById("gender-container");
+
                 if(genderValue===""){
                     genderError.textContent="Please select an option from dropdown";
+                    genderContainer.classList.add("error");
                     return;
 
                 }
                 
-                genderError.textContent=""
+                genderError.textContent="";
+                genderContainer.classList.remove("error");
             }
             function validatedoctor(){
                 var doctorValue=document.getElementById("doctordropdown").value;
+                var doctorError=document.getElementById("doctorError");
+                var doctorContainer=document.getElementById("doctor-container");
                 if(doctorValue===""){
                     doctorError.textContent="Please select an option from dropdown";
+                    doctorContainer.classList.add("error");
                     return;
 
                 }
                 
-                doctorError.textContent=""
+                doctorError.textContent="";
+                doctorContainer.classList.remove("error");
             }
+            const form = document.getElementById('bookappointmentform');
+            const success=document.getElementById('success');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                console.log(document.getElementById("fname").value);
+                console.log(document.getElementById("lname").value);
+                console.log(document.getElementById("email").value);
+                console.log(document.getElementById("age").value);
+                console.log(document.getElementById("phoneno").value);
+                console.log(document.getElementById("address").value);
+                console.log(document.getElementById("genderdropdown").value);
+                console.log(document.getElementById("doctordropdown").value);
+                console.log(document.getElementById("datetime-local").value);
+                console.log(document.getElementById("msg").value);
+                form.reset();
+                success.textContent="Form Successfully Submitted"
 
+            });
+
+            function validateform() { 
+                return true; 
+            }
+            
 
 
 
