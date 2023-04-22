@@ -6,13 +6,17 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/nav-bar.css">
     <link rel="stylesheet" href="css/footer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
 </head>
 
 <body>
     <header>
         <div class="logo">
             <a href="./index.html"><img src="./images/logo.png" alt="Medicare Logo"></a>
-            <a style="text-decoration: none" href="./index.html"><h1>Health Care System</h1></a>
+            <a style="text-decoration: none" href="./index.html">
+                <h1>Health Care System</h1>
+            </a>
         </div>
         <nav>
             <ul>
@@ -33,66 +37,300 @@
             <h1 class="title"> SIGN UP
                 <div class="close"></div>
             </h1>
-            <form>
+            <form novalidate>
                 <div class="input-container">
-                    <input type="text" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; First Name </label>
+                    <input type="text" id="first-name" minlength="1" maxlength="50" required="required" />
+                    <label for="first-name"><i class="fa fa-user"></i> &nbsp; First Name </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="fname-error-message"></span></div>
                 <div class="input-container">
-                    <input type="text" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Last Name </label>
+                    <input type="text" id="last-name" minlength="1" maxlength="50" required="required" />
+                    <label for="last-name"><i class="fa fa-user"></i> &nbsp; Last Name </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="lname-error-message"></span></div>
                 <div class="input-container">
-                    <input type="text" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Age </label>
+                    <input type="text" id="age" minlength="1" maxlength="3" required="required" />
+                    <label for="age"><i class="fa fa-user"></i> &nbsp; Age </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="age-error-message"></span></div>
                 <div class="input-container">
-                    <input type="text" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Address </label>
+                    <input type="text" id="address" minlength="1" maxlength="70" required="required" />
+                    <label for="address"><i class="fa fa-user"></i> &nbsp; Address </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="address-error-message"></span></div>
                 <div class="input-container">
-                    <label for="dropdown" class="dropdown-label"></label>
-                    <select id="dropdown" class="dropdown-select">
+                    <label for="gender" class="dropdown-label"></label>
+                    <select id="gender" class="dropdown-select">
                         <option value="">Select Gender</option>
                         <option value="link1">Male</option>
                         <option value="link2">Female</option>
                     </select>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Email </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="gender-error-message"></span></div>
                 <div class="input-container">
-                    <input type="text" id="#{label}" required="required" />
-                    <label for="#{label}"><i class="fa fa-user"></i> &nbsp; Phone Number </label>
+                    <input type="email" minlength="1" maxlength="30" id="email" required="required" />
+                    <label for="email"><i class="fa fa-user"></i> &nbsp; Email </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="email-error-message"></span></div>
                 <div class="input-container">
-                    <input type="password" id="#{label}" value="" required="required" />
-                    <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Password</label>
+                    <input type="tel" id="phone-number" name="phone-number" required="required">
+                    <label for="phone-number"><i class="fa fa-user"></i> &nbsp; Phone Number </label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="phone-error-message"></span></div>
                 <div class="input-container">
-                    <input type="password" id="#{label}" value="" required="required" />
-                    <label for="#{label}"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
+                    <input minlength="1" maxlength="14" type="password" id="password" value="" required="required" />
+                    <label for="password"><i class="fa fa-lock"></i> &nbsp; Password</label>
                     <div class="bar"></div>
                 </div>
+                <div class="input-container"><span style="color:red" class="password-error-message"></span></div>
+                <div class="input-container">
+                    <input minlength="1" maxlength="14" type="password" id="retype-password" value=""
+                        required="required" />
+                    <label for="retype-password"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container"><span style="color:red" class="re-password-error-message"></span></div>
                 <div class="button-container">
                     <button><span>Create Account &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
                 </div>
-
-
+                <div class="input-container"><span style="color:red" class="same-password-error-message"></span></div>
             </form>
         </div>
     </div>
     <footer>
         <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
     </footer>
+    <script>
+
+        const firstName = document.getElementById("first-name");
+        const lastName = document.getElementById("last-name");
+        const age = document.getElementById("age");
+        const address = document.getElementById("address");
+        const gender = document.getElementById("gender");
+        const email = document.getElementById("email");
+        const phoneNumber = document.getElementById("phone-number");
+        const password = document.getElementById("password");
+        const retypePassword = document.getElementById("retype-password");
+
+        const firstNameLabel = document.querySelector('label[for="first-name"]');
+        const lastNameLabel = document.querySelector('label[for="last-name"]');
+        const ageLabel = document.querySelector('label[for="age"]');
+        const addressLabel = document.querySelector('label[for="address"]');
+        const genderLabel = document.querySelector('label[for="gender"]');
+        const emailLabel = document.querySelector('label[for="email"]');
+        const phoneNumberLabel = document.querySelector('label[for="phone-number"]');
+        const passwordLabel = document.querySelector('label[for="password"]');
+        const retypePasswordLabel = document.querySelector('label[for="retype-password"]');
+
+        firstName.addEventListener("focusout", function () {
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+        });
+
+        lastName.addEventListener("focusout", function () {
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+        });
+
+        age.addEventListener("focusout", function () {
+            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/);
+        });
+
+        address.addEventListener("focusout", function () {
+            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/);
+        });
+
+        gender.addEventListener("focusout", function () {
+            validateField(gender, genderLabel, 'gender-error-message', null);
+        });
+
+        email.addEventListener("focusout", function () {
+            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/);
+        });
+
+        phoneNumber.addEventListener("focusout", function () {
+            maskPhoneNumber();
+            validatePhoneNumber(phoneNumber, phoneNumberLabel);
+        });
+
+        password.addEventListener("focusout", function () {
+            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+        });
+
+        retypePassword.addEventListener("focusout", function () {
+            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+        });
+
+        firstName.addEventListener("input", function () {
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+        });
+
+        lastName.addEventListener("input", function () {
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+        });
+
+        age.addEventListener("input", function () {
+            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/);
+        });
+
+        address.addEventListener("input", function () {
+            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/);
+        });
+
+        gender.addEventListener("input", function () {
+            validateField(gender, genderLabel, 'gender-error-message', null);
+        });
+
+        email.addEventListener("input", function () {
+            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/);
+        });
+
+        phoneNumber.addEventListener("input", function () {
+            maskPhoneNumber();
+            validatePhoneNumber(phoneNumber, phoneNumberLabel);
+        });
+
+        password.addEventListener("input", function () {
+            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+        });
+
+        retypePassword.addEventListener("input", function () {
+            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+        });
+
+        function validateField(inputField, inputFieldLabel, errorMessageClass, pattern, required = true) {
+            const fieldValue = inputField.value.trim();
+            const errorMessage = document.querySelector('.' + errorMessageClass);
+            if (required && fieldValue === "") {
+                errorMessage.innerText = "This field is required.";
+                return false;
+            }
+            if (pattern && !pattern.test(fieldValue)) {
+                errorMessage.innerText = "Invalid input format.";
+                inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
+                inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
+                inputFieldLabel.style.color = '#b5c3d8';
+                return false;
+            }
+            errorMessage.innerText = "";
+            return true;
+        }
+
+        function maskPhoneNumber() {
+            $("#phone-number").inputmask("(999) 999-9999");
+        }
+
+        function validatePhoneNumber(inputField, inputFieldLabel) {
+            let phoneNumber = inputField.value;
+            const errorMessage = document.querySelector('.phone-error-message');
+            let phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+            if (phoneRegex.test(phoneNumber)) {
+                errorMessage.innerText = "";
+                return true;
+            } else {
+                errorMessage.innerText = "Invalid phone number format.";
+                inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
+                inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
+                inputFieldLabel.style.color = '#b5c3d8';
+                return false;
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Validate the form values
+            const firstNameValue = document.getElementById("first-name").value.trim();
+            const lastNameValue = document.getElementById("last-name").value.trim();
+            const ageValue = document.getElementById("age").value.trim();
+            const addressValue = document.getElementById("address").value.trim();
+            const genderValue = document.getElementById("gender").value.trim();
+            const emailValue = document.getElementById("email").value.trim();
+            const phoneNumberValue = document.getElementById("phone-number").value.trim();
+            const passwordValue = document.getElementById("password").value.trim();
+            const confirmPasswordValue = document.getElementById("retype-password").value.trim();
+
+            let isValid = true;
+
+            if (isValid && !firstNameValue) {
+                isValid = validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+            }
+
+            if (isValid && !lastNameValue) {
+                isValid = validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+            }
+
+            if (isValid && (!ageValue || isNaN(ageValue))) {
+                isValid = validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/);
+            }
+
+            if (isValid && !addressValue) {
+                isValid = validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/);
+            }
+
+            if (isValid && !genderValue) {
+                isValid = validateField(gender, genderLabel, 'gender-error-message', null);
+            }
+
+            if (isValid && !emailValue) {
+                isValid = validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/);
+            }
+
+            if (isValid && !phoneNumberValue) {
+                maskPhoneNumber();
+                isValid = validatePhoneNumber(phoneNumber, phoneNumberLabel);
+            }
+
+            if (isValid && (!passwordValue || passwordValue.length < 8)) {
+                isValid = validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+            }
+
+            if (isValid && (!confirmPasswordValue || confirmPasswordValue.length < 8)) {
+                isValid = validateField(password, passwordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+            }
+
+            const errorMessage = document.querySelector('.same-password-error-message');
+            if (passwordValue !== confirmPasswordValue) {
+                errorMessage.innerText = "The passwords entered do not match. Please ensure that both passwords are identical.";
+                isValid = false;
+            } else {
+                errorMessage.innerText = "";
+                isValid = true;
+            }
+
+            // Submit the form if it is valid
+            if (isValid) {
+                console.log('First Name:', firstNameValue);
+                console.log('Last Name:', lastNameValue);
+                console.log('Age:', ageValue);
+                console.log('Address:', addressValue);
+                console.log('Gender:', genderValue);
+                console.log('Email:', emailValue);
+                console.log('Phone Number:', phoneNumberValue);
+                console.log('Password:', passwordValue);
+                console.log('Retype Password:', confirmPasswordValue);
+                resetForm();
+                // document.querySelector("form").submit();
+            }
+        }
+
+        function resetForm() {
+            isValid = false;
+            // Validate the form values
+            const formAttributes = ["first-name", "last-name", "age", "address", "gender", "email", "phone-number", "password", "retype-password"];
+            for (let i = 0; i < formAttributes.length; i++) {
+                document.getElementById(formAttributes[i]).value = "";
+            }
+        }
+
+        document.querySelector("form").addEventListener("submit", submitForm);
+
+    </script>
 </body>
 
 </html>
