@@ -1,3 +1,5 @@
+import config from "./config.js";
+
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
 const age = document.getElementById("age");
@@ -233,7 +235,7 @@ function submitForm(event) {
 }
 
 function resetForm() {
-    isValid = false;
+    isValid = 0;
     // Validate the form values
     const formAttributes = ["first-name", "last-name", "age", "address", "gender", "email", "phone-number", "password", "retype-password"];
     for (let i = 0; i < formAttributes.length; i++) {
