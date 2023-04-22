@@ -156,56 +156,56 @@ function submitForm(event) {
     let isValid = 0;
 
     if (!firstNameValue) {
-        if (validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container")) {
+        if (!validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container")) {
             isValid++;
         }
     }
 
     if (!lastNameValue) {
-        if (validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container")) { // atleast three characters in address
+        if (!validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container")) { // atleast three characters in address
             isValid++;
         }
     }
 
     if (!ageValue || isNaN(ageValue)) {
-        if (validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container")) {
+        if (!validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container")) {
             isValid++;
         };
     }
 
     if (!addressValue) {
-        if (validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container")) {
+        if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container")) {
             isValid++;
         }
     }
 
     if (!genderValue) {
-        if (validateField(gender, genderLabel, 'gender-error-message', null, "gender-container")) {
+        if (!validateField(gender, genderLabel, 'gender-error-message', null, "gender-container")) {
             isValid++;
         }
     }
 
     if (!emailValue) {
-        if (validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container")) {
+        if (!validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container")) {
             isValid++;
         }
     }
 
     if (!phoneNumberValue) {
         maskPhoneNumber();
-        if (validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container")) {
+        if (!validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container")) {
             isValid++;
         }
     }
 
     if (!passwordValue || passwordValue.length < 8) {
-        if (validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container")) {
+        if (!validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container")) {
             isValid++;
         }
     }
 
     if (!confirmPasswordValue || confirmPasswordValue.length < 8) {
-        if (validateField(password, passwordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container")) {
+        if (!validateField(password, passwordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container")) {
             isValid++;
         }
     }
