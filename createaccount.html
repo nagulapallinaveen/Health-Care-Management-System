@@ -43,31 +43,31 @@
                 <div class="close"></div>
             </h1>
             <form novalidate>
-                <div class="input-container">
+                <div class="input-container" id="fname-container">
                     <input type="text" id="first-name" minlength="1" maxlength="50" required="required" />
                     <label for="first-name"><i class="fa fa-user"></i> &nbsp; First Name </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="fname-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="lname-container">
                     <input type="text" id="last-name" minlength="1" maxlength="50" required="required" />
                     <label for="last-name"><i class="fa fa-user"></i> &nbsp; Last Name </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="lname-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="age-container">
                     <input type="text" id="age" minlength="1" maxlength="3" required="required" />
                     <label for="age"><i class="fa fa-user"></i> &nbsp; Age </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="age-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="address-container">
                     <input type="text" id="address" minlength="1" maxlength="70" required="required" />
                     <label for="address"><i class="fa fa-user"></i> &nbsp; Address </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="address-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="gender-container">
                     <label for="gender" class="dropdown-label"></label>
                     <select id="gender" class="dropdown-select">
                         <option value="">Select Gender</option>
@@ -77,25 +77,25 @@
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="gender-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="email-container">
                     <input type="email" minlength="1" maxlength="30" id="email" required="required" />
                     <label for="email"><i class="fa fa-user"></i> &nbsp; Email </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="email-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="phone-container">
                     <input type="tel" id="phone-number" name="phone-number" required="required">
                     <label for="phone-number"><i class="fa fa-user"></i> &nbsp; Phone Number </label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="phone-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="password-container">
                     <input minlength="1" maxlength="14" type="password" id="password" value="" required="required" />
                     <label for="password"><i class="fa fa-lock"></i> &nbsp; Password</label>
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="password-error-message"></span></div>
-                <div class="input-container">
+                <div class="input-container" id="confirm-password-container">
                     <input minlength="1" maxlength="14" type="password" id="retype-password" value=""
                         required="required" />
                     <label for="retype-password"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
@@ -135,84 +135,86 @@
         const retypePasswordLabel = document.querySelector('label[for="retype-password"]');
 
         firstName.addEventListener("focusout", function () {
-            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "fname-container");
         });
 
         lastName.addEventListener("focusout", function () {
-            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "lname-container");
         });
 
         age.addEventListener("focusout", function () {
-            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/);
+            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container");
         });
 
         address.addEventListener("focusout", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/);
+            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/, "address-container");
         });
 
         gender.addEventListener("focusout", function () {
-            validateField(gender, genderLabel, 'gender-error-message', null);
+            validateField(gender, genderLabel, 'gender-error-message', null, "gender-container");
         });
 
         email.addEventListener("focusout", function () {
-            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/);
+            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container");
         });
 
         phoneNumber.addEventListener("focusout", function () {
             maskPhoneNumber();
-            validatePhoneNumber(phoneNumber, phoneNumberLabel);
+            validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container");
         });
 
         password.addEventListener("focusout", function () {
-            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container");
         });
 
         retypePassword.addEventListener("focusout", function () {
-            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container");
         });
 
         firstName.addEventListener("input", function () {
-            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "fname-container");
         });
 
         lastName.addEventListener("input", function () {
-            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/);
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "lname-container");
         });
 
         age.addEventListener("input", function () {
-            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/);
+            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container");
         });
 
         address.addEventListener("input", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/);
+            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/, "address-container");
         });
 
         gender.addEventListener("input", function () {
-            validateField(gender, genderLabel, 'gender-error-message', null);
+            validateField(gender, genderLabel, 'gender-error-message', null, "gender-container");
         });
 
         email.addEventListener("input", function () {
-            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/);
+            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container");
         });
 
         phoneNumber.addEventListener("input", function () {
             maskPhoneNumber();
-            validatePhoneNumber(phoneNumber, phoneNumberLabel);
+            validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container");
         });
 
         password.addEventListener("input", function () {
-            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container");
         });
 
         retypePassword.addEventListener("input", function () {
-            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/);
+            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container");
         });
 
-        function validateField(inputField, inputFieldLabel, errorMessageClass, pattern, required = true) {
+        function validateField(inputField, inputFieldLabel, errorMessageClass, pattern, barErrorCOntainer, required = true) {
             const fieldValue = inputField.value.trim();
             const errorMessage = document.querySelector('.' + errorMessageClass);
+            var container=document.getElementById(barErrorCOntainer);
             if (required && fieldValue === "") {
                 errorMessage.innerText = "This field is required.";
+                container.classList.add("error");
                 return false;
             }
             if (pattern && !pattern.test(fieldValue)) {
@@ -220,8 +222,10 @@
                 inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.color = '#b5c3d8';
+                container.classList.add("error");
                 return false;
             }
+            container.classList.remove("error");
             errorMessage.innerText = "";
             return true;
         }
@@ -230,18 +234,21 @@
             $("#phone-number").inputmask("(999) 999-9999");
         }
 
-        function validatePhoneNumber(inputField, inputFieldLabel) {
+        function validatePhoneNumber(inputField, inputFieldLabel, barErrorCOntainer) {
             let phoneNumber = inputField.value;
+            var container=document.getElementById(barErrorCOntainer);
             const errorMessage = document.querySelector('.phone-error-message');
             let phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
             if (phoneRegex.test(phoneNumber)) {
                 errorMessage.innerText = "";
+                container.classList.remove("error");
                 return true;
             } else {
                 errorMessage.innerText = "Invalid phone number format.";
                 inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.color = '#b5c3d8';
+                container.classList.add("error");
                 return false;
             }
         }
@@ -263,56 +270,56 @@
             let isValid = 0;
 
             if (!firstNameValue) {
-                if (validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/)) {
+                if (validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "fname-container")) {
                     isValid++;
                 }
             }
 
             if (!lastNameValue) {
-                if (validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/)) {
+                if (validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "lname-container")) {
                     isValid++;
                 }
             }
 
             if (!ageValue || isNaN(ageValue)) {
-                if (validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/)) {
+                if (validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container")) {
                     isValid++;
                 };
             }
 
             if (!addressValue) {
-                if (validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/)) {
+                if (validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/, "address-container")) {
                     isValid++;
                 }
             }
 
             if (!genderValue) {
-                if (validateField(gender, genderLabel, 'gender-error-message', null)) {
+                if (validateField(gender, genderLabel, 'gender-error-message', null, "gender-container")) {
                     isValid++;
                 }
             }
 
             if (!emailValue) {
-                if (validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/)) {
+                if (validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container")) {
                     isValid++;
                 }
             }
 
             if (!phoneNumberValue) {
                 maskPhoneNumber();
-                if (validatePhoneNumber(phoneNumber, phoneNumberLabel)) {
+                if (validatePhoneNumber(phoneNumber, phoneNumberLabel,"phone-container")) {
                     isValid++;
                 }
             }
 
             if (!passwordValue || passwordValue.length < 8) {
-                if (validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)) {
+                if (validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container")) {
                     isValid++;
                 }
             }
 
             if (!confirmPasswordValue || confirmPasswordValue.length < 8) {
-                if (validateField(password, passwordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)) {
+                if (validateField(password, passwordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container")) {
                     isValid++;
                 }
             }
