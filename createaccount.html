@@ -56,7 +56,7 @@
                 </div>
                 <div class="input-container"><span style="color:red" class="lname-error-message"></span></div>
                 <div class="input-container" id="age-container">
-                    <input type="text" id="age" minlength="1" maxlength="3" required="required" />
+                    <input type="number" id="age" minlength="1" maxlength="3" required="required" />
                     <label for="age"><i class="fa fa-user"></i> &nbsp; Age </label>
                     <div class="bar"></div>
                 </div>
@@ -135,11 +135,11 @@
         const retypePasswordLabel = document.querySelector('label[for="retype-password"]');
 
         firstName.addEventListener("focusout", function () {
-            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "fname-container");
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container");
         });
 
         lastName.addEventListener("focusout", function () {
-            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "lname-container");
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container");
         });
 
         age.addEventListener("focusout", function () {
@@ -147,7 +147,7 @@
         });
 
         address.addEventListener("focusout", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/, "address-container");
+            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container");
         });
 
         gender.addEventListener("focusout", function () {
@@ -172,11 +172,11 @@
         });
 
         firstName.addEventListener("input", function () {
-            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "fname-container");
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container");
         });
 
         lastName.addEventListener("input", function () {
-            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "lname-container");
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container");
         });
 
         age.addEventListener("input", function () {
@@ -184,7 +184,7 @@
         });
 
         address.addEventListener("input", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/, "address-container");
+            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container");
         });
 
         gender.addEventListener("input", function () {
@@ -270,13 +270,13 @@
             let isValid = 0;
 
             if (!firstNameValue) {
-                if (validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "fname-container")) {
+                if (validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container")) {
                     isValid++;
                 }
             }
 
             if (!lastNameValue) {
-                if (validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z0-9' ]+([,.]?[ ]+[a-zA-Z0-9' ]+)*$/, "lname-container")) {
+                if (validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container")) { // atleast three characters in address
                     isValid++;
                 }
             }
@@ -288,7 +288,7 @@
             }
 
             if (!addressValue) {
-                if (validateField(address, addressLabel, 'address-error-message', /^[A-Za-z0-9\s]{1,70}$/, "address-container")) {
+                if (validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container")) {
                     isValid++;
                 }
             }
