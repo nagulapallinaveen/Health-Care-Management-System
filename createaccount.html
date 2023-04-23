@@ -98,8 +98,7 @@
                 </div>
                 <div class="input-container"><span style="color:red" class="password-error-message"></span></div>
                 <div class="input-container" id="confirm-password-container">
-                    <input type="password" id="retype-password" value=""
-                        required="required" />
+                    <input type="password" id="retype-password" value="" required="required" />
                     <label for="retype-password"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
                     <div class="bar"></div>
                 </div>
@@ -136,90 +135,96 @@
         const retypePasswordLabel = document.querySelector('label[for="retype-password"]');
 
         firstName.addEventListener("focusout", function () {
-            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container");
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container", "First Name is required", "First Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods");
         });
 
         lastName.addEventListener("focusout", function () {
-            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container");
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container", "Last Name is required", "Last Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods");
         });
 
         age.addEventListener("focusout", function () {
-            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container");
+            if (age.value.length > 3) {
+                age.value = age.value.substring(0, 3);
+            }
+            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container", "Age is required", "Age is required");
         });
 
         address.addEventListener("focusout", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container");
+            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.");
         });
 
         gender.addEventListener("focusout", function () {
-            validateField(gender, genderLabel, 'gender-error-message', null, "gender-container");
+            validateField(gender, genderLabel, 'gender-error-message', null, "gender-container", "Gender is required", "Gender is required");
         });
 
         email.addEventListener("focusout", function () {
-            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container");
+            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container", "Email is required", "Please enter a valid email address");
         });
 
         phoneNumber.addEventListener("focusout", function () {
             maskPhoneNumber();
-            validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container");
+            validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required");
         });
 
         password.addEventListener("focusout", function () {
-            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container");
+            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
         });
 
         retypePassword.addEventListener("focusout", function () {
-            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container");
+            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
         });
 
         firstName.addEventListener("input", function () {
-            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container");
+            validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container", "First Name is required", "First Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods");
         });
 
         lastName.addEventListener("input", function () {
-            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container");
+            validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container", "Last Name is required", "Last Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods");
         });
 
         age.addEventListener("input", function () {
-            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container");
+            if (age.value.length > 3) {
+                age.value = age.value.substring(0, 3);
+            }
+            validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container", "Age is required", "Age is required");
         });
 
         address.addEventListener("input", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container");
+            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.");
         });
 
         gender.addEventListener("input", function () {
-            validateField(gender, genderLabel, 'gender-error-message', null, "gender-container");
+            validateField(gender, genderLabel, 'gender-error-message', null, "gender-container", "Gender is required", "Gender is required");
         });
 
         email.addEventListener("input", function () {
-            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container");
+            validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container", "Email is required", "Please enter a valid email address");
         });
 
         phoneNumber.addEventListener("input", function () {
             maskPhoneNumber();
-            validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container");
+            validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required");
         });
 
         password.addEventListener("input", function () {
-            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container");
+            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
         });
 
         retypePassword.addEventListener("input", function () {
-            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container");
+            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
         });
 
-        function validateField(inputField, inputFieldLabel, errorMessageClass, pattern, barErrorCOntainer, required = true) {
+        function validateField(inputField, inputFieldLabel, errorMessageClass, pattern, barErrorCOntainer, requiredErrorMessage, customErrorMessage, required = true) {
             const fieldValue = inputField.value.trim();
             const errorMessage = document.querySelector('.' + errorMessageClass);
             var container = document.getElementById(barErrorCOntainer);
             if (required && fieldValue === "") {
-                errorMessage.innerText = "This field is required.";
+                errorMessage.innerText = requiredErrorMessage;
                 container.classList.add("error");
                 return false;
             }
             if (pattern && !pattern.test(fieldValue)) {
-                errorMessage.innerText = "Invalid input format.";
+                errorMessage.innerText = customErrorMessage;
                 inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.color = '#b5c3d8';
@@ -235,7 +240,7 @@
             $("#phone-number").inputmask("(999) 999-9999");
         }
 
-        function validatePhoneNumber(inputField, inputFieldLabel, barErrorCOntainer) {
+        function validatePhoneNumber(inputField, inputFieldLabel, barErrorCOntainer, requiredErrorMessage) {
             let phoneNumber = inputField.value;
             var container = document.getElementById(barErrorCOntainer);
             const errorMessage = document.querySelector('.phone-error-message');
@@ -245,7 +250,7 @@
                 container.classList.remove("error");
                 return true;
             } else {
-                errorMessage.innerText = "Invalid phone number format.";
+                errorMessage.innerText = requiredErrorMessage;
                 inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
                 inputFieldLabel.style.color = '#b5c3d8';
@@ -271,56 +276,56 @@
             let isValid = 0;
 
             if (!firstNameValue) {
-                if (!validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container")) {
+                if (!validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container", "First Name is required", "First Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
                     isValid++;
                 }
             }
 
             if (!lastNameValue) {
-                if (!validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container")) { // atleast three characters in address
+                if (!validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container", "Last Name is required", "Last Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
                     isValid++;
                 }
             }
 
             if (!ageValue || isNaN(ageValue)) {
-                if (!validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container")) {
+                if (!validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container", "Age is required", "Age is required")) {
                     isValid++;
                 };
             }
 
             if (!addressValue) {
-                if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container")) {
+                if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
                     isValid++;
                 }
             }
 
             if (!genderValue) {
-                if (!validateField(gender, genderLabel, 'gender-error-message', null, "gender-container")) {
+                if (!validateField(gender, genderLabel, 'gender-error-message', null, "gender-container", "Gender is required", "Gender is required")) {
                     isValid++;
                 }
             }
 
             if (!emailValue) {
-                if (!validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container")) {
+                if (!validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container", "Email is required", "Please enter a valid email address")) {
                     isValid++;
                 }
             }
 
             if (!phoneNumberValue) {
                 maskPhoneNumber();
-                if (!validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container")) {
+                if (!validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required")) {
                     isValid++;
                 }
             }
 
             if (!passwordValue || passwordValue.length < 8) {
-                if (!validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container")) {
+                if (!validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
                     isValid++;
                 }
             }
 
             if (!confirmPasswordValue || confirmPasswordValue.length < 8) {
-                if (!validateField(password, passwordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container")) {
+                if (!validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
                     isValid++;
                 }
             }
