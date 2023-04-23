@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/nav-bar.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/aboutus.css">
     <link rel="stylesheet" href="css/analytics.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
 </head>
@@ -44,7 +43,7 @@
                 <img src="images/healthcare-analytics.jpg" alt="About us Medicare Photo">
                 <h2>Medicare Healthcare System Analytics</h2>
                 <p>
-                    Based on the data provided in the example code, the Medicare Healthcare System handled a total of
+                    The Medicare Healthcare System handled a total of
                     3,500 cases over a period of five months, with 500 cases handled in January, 600 in February, 700 in
                     March, 800 in April, and 900 in May. The casesHandled property in the data object contains the
                     labels and values for the number of cases handled each month. These values can be used to create a
@@ -57,33 +56,18 @@
                 <h2>Analytics</h2>
                 <div class="profile">
                     <div class="profile-info">
-                        <canvas id="barChart"></canvas>
-                    </div>
-                    <p class="description">A graphical representation in the form of a bar chart that illustrates the number of cases dealt with in a healthcare setting. The chart is designed to be user-friendly and straightforward, with clear labels indicating the different types of cases handled, and values representing the number of cases in each category. The purpose of this chart is to assist healthcare providers in comprehending their workload and spotting patterns in the kinds of cases they deal with. The usage of such a chart can be beneficial for healthcare providers in making well-informed decisions regarding staffing, resource allocation, and patient care.
-                    </p>
-                </div>
-                <div class="profile">
-                    <div class="profile-info">
                         <canvas id="pieChart"></canvas>
                     </div>
                     <p class="description">
-                        A pie chart that displays information on the patients treated in a healthcare facility. The chart is designed to be user-friendly, with labels indicating the different categories of patients treated and values representing the number of patients in each category. The colors used in the chart differentiate between the different categories of patients. By using this chart, healthcare providers can analyze the data and gain insights into the types of patients they are treating. This can be helpful in decision-making processes such as resource allocation, staffing, and patient care. Moreover, the chart is responsive and can adjust to different screen sizes, ensuring that users can access it easily on various devices.
-                    </p>
-                </div>
-                <div class="profile">
-                    <div class="profile-info">
-                        <canvas id="horizontalBarChart"></canvas>
-                    </div>
-                    <p class="description">
-                        A horizontal bar chart that presents information about the number of professionals treated in a healthcare setting. The chart is user-friendly and easy to comprehend, with labels showing the types of professionals treated and the values representing the number of professionals. The colors used in the chart indicate different categories of professionals. This chart can help healthcare providers make informed decisions regarding staffing, resource allocation, and patient care by providing insights into the number of professionals they are treating. The chart is also designed to be responsive to various screen sizes, making it accessible to users on different devices. The horizontal orientation of the chart makes it easy to compare different categories of professionals treated.
-                    </p>
-                </div>
-                <div class="profile">
-                    <div class="profile-info">
-                        <canvas id="specialtyChart"></canvas>
-                    </div>
-                    <p class="description">
-                        A speciality chart that shows data related to various medical specialties and the number of cases handled by each specialty. The chart is user-friendly, with labels indicating the medical specialties and the values showing the number of cases handled. The colors in the chart represent different categories of medical specialties. It can help healthcare providers to understand the distribution of cases handled by each medical specialty and make informed decisions about staffing, resource allocation, and patient care. The chart is designed to be responsive to different screen sizes, ensuring that users can access it from various devices. The chart's vertical orientation makes it easy to compare the number of cases handled by different medical specialties.
+                        A pie chart that presents information about the number of professionals treated in a
+                        healthcare setting. The chart is user-friendly and easy to comprehend, with labels showing the
+                        types of professionals treated and the values representing the number of professionals. The
+                        colors used in the chart indicate different categories of professionals. This chart can help
+                        healthcare providers make informed decisions regarding staffing, resource allocation, and
+                        patient care by providing insights into the number of professionals they are treating. The chart
+                        is also designed to be responsive to various screen sizes, making it accessible to users on
+                        different devices. The horizontal orientation of the chart makes it easy to compare different
+                        categories of professionals treated.
                     </p>
                 </div>
             </div>
@@ -97,79 +81,21 @@
                     labels: ["Jan", "Feb", "Mar", "Apr", "May"],
                     values: [500, 600, 700, 800, 900]
                 },
-                patientTreated: {
-                    labels: ["General", "Surgery", "Pediatric", "Cardiology"],
-                    values: [400, 200, 300, 100]
-                },
                 professionalsTreated: {
                     labels: ["Pediatrician", "Cardiologist", "Dentist", "Chiropractor", "Ophthalmologist", "Dermatologist", "Gastroenterologist"],
                     values: [100, 80, 150, 70, 90, 120, 60]
                 }
             };
 
-            function createBarChart(data) {
-                var ctx = document.getElementById("barChart").getContext("2d");
-                var chart = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels: data.casesHandled.labels,
-                        datasets: [
-                            {
-                                label: "Cases Handled",
-                                data: data.casesHandled.values,
-                                backgroundColor: "#6c757d",
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [
-                                {
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                });
-            }
-
             function createPieChart(data) {
                 var ctx = document.getElementById("pieChart").getContext("2d");
                 var chart = new Chart(ctx, {
                     type: "pie",
                     data: {
-                        labels: data.patientTreated.labels,
-                        datasets: [
-                            {
-                                label: "Patient Treated",
-                                data: data.patientTreated.values,
-                                backgroundColor: [
-                                    "#007bff",
-                                    "#dc3545",
-                                    "#ffc107",
-                                    "#28a745"
-                                ]
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true
-                    }
-                });
-            }
-
-            function createHorizontalBarChart(data) {
-                var ctx = document.getElementById("horizontalBarChart").getContext("2d");
-                var chart = new Chart(ctx, {
-                    type: "horizontalBar",
-                    data: {
                         labels: data.professionalsTreated.labels,
                         datasets: [
                             {
-                                label: "Professionals Treated",
+                                label: "Patient Treated",
                                 data: data.professionalsTreated.values,
                                 backgroundColor: [
                                     "#007bff",
@@ -180,73 +106,16 @@
                                     "#17a2b8",
                                     "#fd7e14"
                                 ],
-                                borderWidth: 1
                             }
                         ]
                     },
                     options: {
-                        scales: {
-                            xAxes: [
-                                {
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            ]
-                        }
+                        responsive: true
                     }
                 });
             }
 
-            function createSpecialtyChart(data) {
-                var ctx = document.getElementById("specialtyChart").getContext("2d");
-                var chart = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels: [
-                            "Pediatrician",
-                            "Cardiologist",
-                            "Dentist",
-                            "Chiropractor",
-                            "Ophthalmologist",
-                            "Dermatologist",
-                            "Gastroenterologist"
-                        ],
-                        datasets: [
-                            {
-                                label: "Cases Handled by Specialty",
-                                data: [200, 100, 300, 150, 175, 250, 225],
-                                backgroundColor: [
-                                    "#007bff",
-                                    "#dc3545",
-                                    "#ffc107",
-                                    "#28a745",
-                                    "#6c757d",
-                                    "#e83e8c",
-                                    "#20c997"
-                                ],
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [
-                                {
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                });
-            }
-
-            createBarChart(data);
             createPieChart(data);
-            createHorizontalBarChart(data);
-            createSpecialtyChart(data);
         </script>
     </div>
 </body>
