@@ -150,7 +150,7 @@
         });
 
         address.addEventListener("focusout", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.");
+            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid it should contain minimum 3 letters and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.");
         });
 
         gender.addEventListener("focusout", function () {
@@ -190,7 +190,7 @@
         });
 
         address.addEventListener("input", function () {
-            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.");
+            validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid it should contain minimum 3 letters and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.");
         });
 
         gender.addEventListener("input", function () {
@@ -294,7 +294,7 @@
             }
 
             if (!addressValue) {
-                if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
+                if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is invalid it should contain minimum 3 letters and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
                     isValid++;
                 }
             }
