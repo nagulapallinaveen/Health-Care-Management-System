@@ -98,8 +98,7 @@
                 </div>
                 <div class="input-container"><span style="color:red" class="password-error-message"></span></div>
                 <div class="input-container" id="confirm-password-container">
-                    <input type="password" id="retype-password" value=""
-                        required="required" />
+                    <input type="password" id="retype-password" value="" required="required" />
                     <label for="retype-password"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
                     <div class="bar"></div>
                 </div>
@@ -344,8 +343,24 @@
                 console.log('Phone Number:', phoneNumberValue);
                 console.log('Password:', passwordValue);
                 console.log('Retype Password:', confirmPasswordValue);
+                console.log('Saving to local storage...');
+                const formData = {
+                    firstName: firstNameValue,
+                    lastName: lastNameValue,
+                    age: ageValue,
+                    address: addressValue,
+                    gender: genderValue,
+                    email: emailValue,
+                    phoneNumber: phoneNumberValue,
+                    password: passwordValue,
+                    confirmPassword: confirmPasswordValue
+                };
+                localStorage.setItem('formData', JSON.stringify(formData));
+
                 resetForm();
                 // document.querySelector("form").submit();
+            } else {
+                console.log('Form is not valid. Data not saved to local storage.');
             }
         }
 
