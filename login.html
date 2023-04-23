@@ -105,8 +105,14 @@
         const passwordErrorMessage = document.querySelector('.password-error-message');
         const successPopup = document.querySelector('.success-popup');
 
-        function showError(inputElement, errorMessage) {
+        const emailLabel = document.querySelector('label[for="email"]');
+        const passwordLabel = document.querySelector('label[for="password"]');
+
+        function showError(inputElement, errorMessage, inputFieldLabel) {
             inputElement.parentElement.classList.add('input-error');
+            inputFieldLabel.style.webkitTransform = 'translate(-12%, -65%) scale(0.75)';
+            inputFieldLabel.style.transform = 'translate(-12%, -65%) scale(0.75)';
+            inputFieldLabel.style.color = '#b5c3d8';
             errorMessage.textContent = inputElement.validationMessage;
         }
 
@@ -117,9 +123,9 @@
 
         function validateEmail() {
             if (email.validity.valueMissing) {
-                showError(email, emailErrorMessage);
+                showError(email, emailErrorMessage, emailLabel);
             } else if (email.validity.typeMismatch) {
-                showError(email, emailErrorMessage);
+                showError(email, emailErrorMessage, emailLabel);
                 emailErrorMessage.textContent = 'Please enter a valid email address';
             } else {
                 hideError(email, emailErrorMessage);
@@ -128,7 +134,7 @@
 
         function validatePassword() {
             if (password.validity.valueMissing) {
-                showError(password, passwordErrorMessage);
+                showError(password, passwordErrorMessage, passwordLabel);
             } else {
                 hideError(password, passwordErrorMessage);
             }
@@ -142,16 +148,7 @@
             }
         }
 
-        function validateForm(event) {
-            event.preventDefault();
-            validateEmail();
-            validatePassword();
-            if (form.checkValidity() && validateUser()) {
-                // popup
-                //successPopup.style.display = 'block';
-                window.location.href = 'analytics.html';
-            }
-        }
+
         function validateUser() {
             const formData = JSON.parse(localStorage.getItem('formData'));
             const storedEmail = formData.email
@@ -159,7 +156,7 @@
             if (email.value === storedEmail && password.value === storedPassword) {
                 return true;
             } else {
-                showError(password, passwordErrorMessage);
+                showError(password, passwordErrorMessage, passwordLabel);
                 passwordErrorMessage.textContent = 'Incorrect email or password';
                 return false;
             }
@@ -167,7 +164,7 @@
 
         email.addEventListener('input', validateEmail);
         password.addEventListener('input', validatePassword);
-        form.addEventListener('submit', validateForm);
+
         email.addEventListener('blur', handleBlur);
         password.addEventListener('blur', handleBlur);
 
@@ -185,6 +182,18 @@
         //     showSuccessPopup();
         // }
 
+        function validateForm(event) {
+            event.preventDefault();
+            validateEmail();
+            validatePassword();
+            if (form.checkValidity() && validateUser()) {
+                // popup
+                //successPopup.style.display = 'block';
+                window.location.href = 'analytics.html';
+            }
+        }
+
+        form.addEventListener('submit', validateForm);
     </script>
     <footer>
         <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
