@@ -12,24 +12,15 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <style>
-  /* .input-container.error .bar {
-    background-color: red;
+    .input-box.error {
+    background-color:red;
+    
+  
   }
-  input.error {
-  border-color: red;
-}
-.error {
-  border: 2px solid red;
-} */
 
-input.error, textarea.error {
-  border-color: red;
-}
-
-.input-container.error .bar {
-  background-color: red;
-}
+  
 </style>
 
 <body>
@@ -54,8 +45,6 @@ input.error, textarea.error {
         </ul>
       </nav>
     </header>
-
-    <body>
       <section>
         <div class="container">
           <div class="content">
@@ -81,27 +70,31 @@ input.error, textarea.error {
             <div class="right-side">
               <div class="topic-text">Send us a message</div>
               <form novalidate>
-                <div class="input-box">
+                <div class="input-box" id="name-container">
                   <input type="text" id="name" placeholder="Enter your name" minlength="1" maxlength="50" required>
-                  <div class="bar"></div>
+                 
                 </div>
                 <div class="input-container">
                   <span style="color:red" class="name-error-message"></span>
                 </div>
-                <div class="input-box">
+               
+
+                <div class="input-box" id="email-container">
                   <input type="email" id="email" placeholder="Enter your email" required>
-                  <div class="bar"></div>
+                  <!-- <div class="bar"></div> -->
                 </div>
                 <div class="input-container">
                   <span style="color:red" class="email-error-message"></span>
                 </div>
-                <div class="input-box message-box">
+
+                <div class="input-box" id="message-container">
                   <textarea id="message" placeholder="Message" rows="5" required></textarea>
-                  <div class="bar"></div>
+                 
                 </div>
                 <div class="input-container">
                   <span style="color:red" class="message-error"></span>
                 </div>
+
                 <div class="button">
                   <input type="submit" value="Send Now">
                 </div>
@@ -158,91 +151,102 @@ input.error, textarea.error {
           </div>
         </div>
         <script>
-          const form = document.querySelector('form');
           const nameField = document.getElementById('name');
           const emailField = document.getElementById('email');
           const messageField = document.getElementById('message');
-          const nameErrorMessage = document.querySelector('.name-error-message');
-          const emailErrorMessage = document.querySelector('.email-error-message');
-          const messageErrorMessage = document.querySelector('.message-error');
-          const namenumeric = /^[a-zA-Z\s]*$/;
-
-          nameField.addEventListener('blur', validateName);
-          emailField.addEventListener('blur', validateEmail);
-          messageField.addEventListener('blur', validateMessage);
-
-          form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            let hasError = false;
-
-            validateName();
-            validateEmail();
-            validateMessage();
-
-            if (!hasError) {
-              console.log('Name:', nameField.value);
-              console.log('Email:', emailField.value);
-              console.log('Message:', messageField.value);
-              //form.submit();
-              nameField.value = '';
-              emailField.value = '';
-              messageField.value = '';
-            }
+          nameField.addEventListener("focusout", function () {
+            validateField(nameField, 'name-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "name-container");
+          });
+          emailField.addEventListener("focusout", function () {
+            validateField(emailField, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container");
+          });
+          messageField.addEventListener("focusout", function () {
+            validateField(messageField, 'message-error',null, "message-container");
           });
 
-          function validateName() {
-            if (nameField.validity.valueMissing) {
-              nameErrorMessage.textContent = 'Name is required';
-              nameField.classList.add('error');
-              hasError = true;
-            } else if (!namenumeric.test(nameField.value)) {
-              nameErrorMessage.textContent = 'Name should only contain alphabets and spaces';
-              nameField.classList.add('error');
-              hasError = true;
-            } else if (/\d/.test(nameField.value)) {
-              nameErrorMessage.textContent = 'Name should not contain numbers';
-              nameField.classList.add('error');
-              hasError = true;
-            } else {
-              nameErrorMessage.textContent = '';
-              nameField.classList.remove('error');
+          nameField.addEventListener("input", function () {
+              validateField(nameField, 'name-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "name-container");
+          });
+          emailField.addEventListener("input", function () {
+            validateField(emailField, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container");
+          });
+          messageField.addEventListener("input", function () {
+            validateField(messageField, 'message-error',null, "message-container");
+          });
+
+          function validateField(inputField, errorMessageClass, pattern, barErrorCOntainer, required = true) {
+            const fieldValue = inputField.value.trim();
+            const errorMessage = document.querySelector('.' + errorMessageClass);
+            var container = document.getElementById(barErrorCOntainer);
+            if (required && fieldValue === "") {
+                errorMessage.innerText = "This field is required.";
+                container.classList.add("error");
+                return false;
             }
+            if (pattern && !pattern.test(fieldValue)) {
+                errorMessage.innerText = "Invalid input format.";
+                container.classList.add("error");
+                return false;
+            }
+            container.classList.remove("error");
+            errorMessage.innerText = "";
+            return true;
           }
 
-          function validateEmail() {
-            if (emailField.validity.valueMissing) {
-              emailErrorMessage.textContent = 'Email is required';
-              emailField.classList.add('error');
-              hasError = true;
-            } else if (emailField.validity.typeMismatch) {
-              emailErrorMessage.textContent = 'Please enter a valid email address';
-              emailField.classList.add('error');
-              hasError = true;
+          function submitForm(event) {
+              event.preventDefault();
+
+              // Validate the form values
+              const nameValue = document.getElementById("name").value.trim();
+              const emailValue = document.getElementById("email").value.trim();
+              const messageValue = document.getElementById("message").value.trim();
+              let isValid = 0;
+
+              if (!nameValue) {
+                  if (!validateField(nameField, 'name-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "name-container")) {
+                      isValid++;
+                  }
+              }
+              if (!emailValue) {
+                if (!validateField(emailField, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container")) {
+                    isValid++;
+                }
+              }
+              if (!messageValue) {
+                if (!validateField(messageField, 'message-error',  null,"message-container")) { 
+                    isValid++;
+                }
+              }
+
+              if (isValid == 0) {
+                console.log('First Name:', nameValue);
+                console.log('Email Name:', emailValue);
+                console.log('Message:', messageValue);
+                const formData = {
+                    name: nameValue,
+                    email: emailValue,
+                    message: messageValue
+                };
+                localStorage.setItem('formData', JSON.stringify(formData));
+
+                resetForm();
+                // document.querySelector("form").submit();
             } else {
-              emailErrorMessage.textContent = '';
-              emailField.classList.remove('error');
+                console.log('Form is not valid. Data not saved to local storage.');
             }
-          }
-
-          function validateMessage() {
-            if (messageField.validity.valueMissing) {
-              messageErrorMessage.textContent = 'Message is required';
-              messageField.classList.add('error');
-              hasError = true;
-            } else {
-              messageErrorMessage.textContent = '';
-              messageField.classList.remove('error');
+        }
+        function resetForm() {
+            isValid = 0;
+            // Validate the form values
+            const formAttributes = ["name", "email", "message"];
+            for (let i = 0; i < formAttributes.length; i++) {
+                document.getElementById(formAttributes[i]).value = "";
             }
-          }
+        }
 
+        document.querySelector("form").addEventListener("submit", submitForm);
 
-        </script>
-    </body>
-    </section>
-    <footer>
-      <p>&copy; 2023 Medicare Healthcare System. All rights reserved.</p>
-    </footer>
-  </div>
+    </script>
 </body>
 
 </html>
