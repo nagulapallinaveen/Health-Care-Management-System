@@ -205,11 +205,11 @@
               isValid++;
             }
           }
-          if (!emailValue) {
+          // if (!emailValue) {
             if (!validateField(emailField, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email", "Email is required", "Please enter a valid email address")) {
               isValid++;
             }
-          }
+          // }
           if (!messageValue) {
             if (!validateField(messageField, 'message-error', null, "message", "message is required", "Please enter a valid message")) {
               isValid++;
