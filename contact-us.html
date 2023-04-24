@@ -37,6 +37,8 @@
           </li>
           <li><a href="login.html"><span><i class="fa fa-file-text"></i></span>Login</a></li>
           <li><a href="createaccount.html"> Sign Up</a></li>
+          <li><a href="analytics.html"><span class="home"><i class="fa fa-fw fa-home"></i></span>Analytics</a>
+          </li>
           <li><a href="contact-us.html"><span><i class="fa fa-file-text"></i></span>Contact Us</a></li>
         </ul>
       </nav>
@@ -224,6 +226,7 @@
               message: messageValue
             };
             localStorage.setItem('formData', JSON.stringify(formData));
+            alert("Thank You For Contacting Us.")
 
             resetForm();
             // document.querySelector("form").submit();
