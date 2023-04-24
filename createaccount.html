@@ -275,59 +275,41 @@
 
             let isValid = 0;
 
-            if (!firstNameValue) {
-                if (!validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container", "First Name is required", "First Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
-                    isValid++;
-                }
+            if (!validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container", "First Name is required", "First Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
+                isValid++;
             }
 
-            if (!lastNameValue) {
-                if (!validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container", "Last Name is required", "Last Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
-                    isValid++;
-                }
+            if (!validateField(lastName, lastNameLabel, 'lname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "lname-container", "Last Name is required", "Last Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
+                isValid++;
             }
 
-            if (!ageValue || isNaN(ageValue)) {
-                if (!validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container", "Age is required", "Age is required")) {
-                    isValid++;
-                };
+            if (!validateField(age, ageLabel, 'age-error-message', /^[0-9]{1,3}$/, "age-container", "Age is required", "Age is required")) {
+                isValid++;
+            };
+
+            if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid it should contain minimum 3 letters and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
+                isValid++;
             }
 
-            if (!addressValue) {
-                if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid it should contain minimum 3 letters and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
-                    isValid++;
-                }
+            if (!validateField(gender, genderLabel, 'gender-error-message', null, "gender-container", "Gender is required", "Gender is required")) {
+                isValid++;
             }
 
-            if (!genderValue) {
-                if (!validateField(gender, genderLabel, 'gender-error-message', null, "gender-container", "Gender is required", "Gender is required")) {
-                    isValid++;
-                }
+            if (!validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container", "Email is required", "Please enter a valid email address")) {
+                isValid++;
             }
 
-            // if (!emailValue) {
-                if (!validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container", "Email is required", "Please enter a valid email address")) {
-                    isValid++;
-                }
-            // }
-
-            if (!phoneNumberValue) {
-                maskPhoneNumber();
-                if (!validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required")) {
-                    isValid++;
-                }
+            maskPhoneNumber();
+            if (!validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required")) {
+                isValid++;
             }
 
-            if (!passwordValue || passwordValue.length < 8) {
-                if (!validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
-                    isValid++;
-                }
+            if (!validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
+                isValid++;
             }
 
-            if (!confirmPasswordValue || confirmPasswordValue.length < 8) {
-                if (!validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
-                    isValid++;
-                }
+            if (!validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
+                isValid++;
             }
 
             const errorMessage = document.querySelector('.same-password-error-message');

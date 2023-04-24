@@ -172,7 +172,7 @@
           validateField(messageField, 'message-error', null, "message", "message is required", "Please enter a valid message");
         });
 
-        function validateField(inputField, errorMessageClass, pattern, barErrorCOntainer, requiredErrorMessage, customErrorMessage,  required = true) {
+        function validateField(inputField, errorMessageClass, pattern, barErrorCOntainer, requiredErrorMessage, customErrorMessage, required = true) {
           const fieldValue = inputField.value.trim();
           const errorMessage = document.querySelector('.' + errorMessageClass);
           var container = document.getElementById(barErrorCOntainer);
@@ -200,20 +200,17 @@
           const messageValue = document.getElementById("message").value.trim();
           let isValid = 0;
 
-          if (!nameValue) {
-            if (!validateField(nameField, 'name-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "name", "Name is required", "Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
-              isValid++;
-            }
+          if (!validateField(nameField, 'name-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "name", "Name is required", "Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods")) {
+            isValid++;
           }
-          // if (!emailValue) {
-            if (!validateField(emailField, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email", "Email is required", "Please enter a valid email address")) {
-              isValid++;
-            }
-          // }
-          if (!messageValue) {
-            if (!validateField(messageField, 'message-error', null, "message", "message is required", "Please enter a valid message")) {
-              isValid++;
-            }
+
+          if (!validateField(emailField, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email", "Email is required", "Please enter a valid email address")) {
+            isValid++;
+          }
+
+
+          if (!validateField(messageField, 'message-error', null, "message", "message is required", "Please enter a valid message")) {
+            isValid++;
           }
 
           if (isValid == 0) {
