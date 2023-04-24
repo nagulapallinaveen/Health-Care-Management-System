@@ -64,7 +64,6 @@
 .right-side .input-box textarea{
   height: 100%;
   width: 100%;
-  border: none;
   outline: none;
   font-size: 16px;
   background: #F0F1F8;
@@ -82,7 +81,7 @@
   display: inline-block;
   margin-top: 12px;
 }
-.right-side .button input[type="button"]{
+.right-side .button input[type="submit"]{
   color: #fff;
   font-size: 18px;
   outline: none;
