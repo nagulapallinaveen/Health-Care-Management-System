@@ -305,11 +305,11 @@
                 }
             }
 
-            if (!emailValue) {
+            // if (!emailValue) {
                 if (!validateField(email, emailLabel, 'email-error-message', /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/, "email-container", "Email is required", "Please enter a valid email address")) {
                     isValid++;
                 }
-            }
+            // }
 
             if (!phoneNumberValue) {
                 maskPhoneNumber();
