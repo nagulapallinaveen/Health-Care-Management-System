@@ -41,7 +41,7 @@
     <div class="container">
         <div class="card"></div>
         <div class="card">
-            <h1 class="title"> SIGN UP
+            <h1 class="title"> Appointment Form
                 <div class="close"></div>
             </h1>
             <form novalidate>
@@ -91,22 +91,39 @@
                     <div class="bar"></div>
                 </div>
                 <div class="input-container"><span style="color:red" class="phone-error-message"></span></div>
-                <div class="input-container" id="password-container">
-                    <input type="password" id="password" value="" required="required" />
-                    <label for="password"><i class="fa fa-lock"></i> &nbsp; Password</label>
+
+                <div class="input-container" id="doctor-container">
+                    <label for="doctor" class="dropdown-label"></label>
+                    <select id="doctor" class="dropdown-select">
+                        <option value="">Choose a Doctor</option>
+                        <option value="Naveen - Pediatrician">Naveen - Pediatrician</option>
+                        <option value="Meghanjali - Cardiologist">Meghanjali - Cardiologist</option>
+                        <option value="Surendra - Dentist">Surendra - Dentist</option>
+                        <option value="Mounica - Chiropractor">Mounica - Chiropractor</option>
+                        <option value="Gagan - Ophthalmologist">Gagan - Ophthalmologist</option>
+                        <option value="Akshay - Dermatologist">Akshay - Dermatologist</option>
+                        <option value="Kushal - Gastroenterologist">Kushal - Gastroenterologist</option>
+                    </select>
                     <div class="bar"></div>
                 </div>
-                <div class="input-container"><span style="color:red" class="password-error-message"></span></div>
-                <div class="input-container" id="confirm-password-container">
-                    <input type="password" id="retype-password" value="" required="required" />
-                    <label for="retype-password"><i class="fa fa-lock"></i> &nbsp; Retype Password</label>
+                <div class="input-container"><span style="color:red;" class="doctor-error-message"></span></div>
+
+                <div class="input-container" id="datetime-container">
+                    <div style="color: white">Choose Appointment Date & Time</div>
+                    <label for="datetime-local"></label>
+                    <input type="datetime-local" id="datetime-local" name="datetime-local" required="required" />
+                </div>
+                <div class="input-container"><span style="color:red;" class="datetime-error-message"></span></div>
+
+                <div class="input-container">
+                    <input type="textarea" id="msg" value="" />
+                    <label for="msg"><i class="fa fa-lock"></i> &nbsp; Your Message</label>
                     <div class="bar"></div>
                 </div>
-                <div class="input-container"><span style="color:red" class="re-password-error-message"></span></div>
                 <div class="button-container">
-                    <button><span>Create Account &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
+                    <button><span>SCHEDULE APPOINTMENT &nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span></button>
                 </div>
-                <div class="input-container"><span style="color:red" class="same-password-error-message"></span></div>
+
             </form>
         </div>
     </div>
@@ -121,8 +138,12 @@
         const gender = document.getElementById("gender");
         const email = document.getElementById("email");
         const phoneNumber = document.getElementById("phone-number");
-        const password = document.getElementById("password");
-        const retypePassword = document.getElementById("retype-password");
+        const doctor = document.getElementById("doctor");
+        const msg = document.getElementById("msg");
+        const datenow = new Date();
+        const currentDateTime = datenow.toISOString().slice(0, 16);
+        const datetime = document.getElementById('datetime-local')
+        const currentdate = datetime.setAttribute('min', currentDateTime);
 
         const firstNameLabel = document.querySelector('label[for="first-name"]');
         const lastNameLabel = document.querySelector('label[for="last-name"]');
@@ -131,8 +152,10 @@
         const genderLabel = document.querySelector('label[for="gender"]');
         const emailLabel = document.querySelector('label[for="email"]');
         const phoneNumberLabel = document.querySelector('label[for="phone-number"]');
-        const passwordLabel = document.querySelector('label[for="password"]');
-        const retypePasswordLabel = document.querySelector('label[for="retype-password"]');
+        const doctorLabel = document.querySelector('label[for="doctor"]');
+        const msgLabel = document.querySelector('label[for="msg"]');
+        const datetimeLabel = document.querySelector('label[for="datetime-local"]');
+
 
         firstName.addEventListener("focusout", function () {
             validateField(firstName, firstNameLabel, 'fname-error-message', /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/, "fname-container", "First Name is required", "First Name is invalid and can contains letters (uppercase or lowercase), spaces, hyphens, apostrophes, commas, and periods");
@@ -166,12 +189,14 @@
             validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required");
         });
 
-        password.addEventListener("focusout", function () {
-            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
+        doctor.addEventListener("focusout", function () {
+            validateField(doctor, doctorLabel, 'doctor-error-message', null, "doctor-container", "Doctor Field is required", "Doctor Field is required");
         });
 
-        retypePassword.addEventListener("focusout", function () {
-            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
+        datetime.addEventListener("focusout", function () {
+
+
+            validateField(datetime, datetimeLabel, 'datetime-error-message', null, "datetime-container", "Date Field is required", "Date Field is required");
         });
 
         firstName.addEventListener("input", function () {
@@ -206,12 +231,13 @@
             validatePhoneNumber(phoneNumber, phoneNumberLabel, "phone-container", "Phone number is required");
         });
 
-        password.addEventListener("input", function () {
-            validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
+        doctor.addEventListener("input", function () {
+            validateField(doctor, doctorLabel, 'doctor-error-message', null, "doctor-container", "Doctor Field is required", "Doctor Field is required");
         });
 
-        retypePassword.addEventListener("input", function () {
-            validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.");
+        datetime.addEventListener("input", function () {
+
+            validateField(datetime, datetimeLabel, 'datetime-error-message', null, "datetime-container", "Date Field is required", "Date Field is required");
         });
 
         function validateField(inputField, inputFieldLabel, errorMessageClass, pattern, barErrorCOntainer, requiredErrorMessage, customErrorMessage, required = true) {
@@ -270,8 +296,9 @@
             const genderValue = document.getElementById("gender").value.trim();
             const emailValue = document.getElementById("email").value.trim();
             const phoneNumberValue = document.getElementById("phone-number").value.trim();
-            const passwordValue = document.getElementById("password").value.trim();
-            const confirmPasswordValue = document.getElementById("retype-password").value.trim();
+            const doctorValue = document.getElementById("doctor").value.trim();
+            const msgValue = document.getElementById("msg").value;
+            const datetimeValue = document.getElementById("datetime-local").value;
 
             let isValid = 0;
 
@@ -287,7 +314,7 @@
                 isValid++;
             };
 
-            if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid it should contain minimum 3 letters and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
+            if (!validateField(address, addressLabel, 'address-error-message', /^[a-zA-Z0-9]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[\s]*[a-zA-Z0-9.\-\,\#\:]+[a-zA-Z0-9\s.\-\,\#\:]*$/, "address-container", "Address is required", "Address is invalid and can contain letters, numbers, spaces, commas, dots, dashes, hash, and colon, but cannot start with these.")) {
                 isValid++;
             }
 
@@ -304,21 +331,15 @@
                 isValid++;
             }
 
-            if (!validateField(password, passwordLabel, 'password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "password-container", "Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
+            if (!validateField(doctor, doctorLabel, 'doctor-error-message', null, "doctor-container", "Doctor Field is required", "Doctor Field is required")) {
                 isValid++;
             }
 
-            if (!validateField(retypePassword, retypePasswordLabel, 're-password-error-message', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/, "confirm-password-container", "Confirm Password is required", "The password you provided is not valid. Please ensure that your password meets the following requirements a) Must contain at least one lowercase and uppercase letter and atleast one digit and Must be at least 8 characters long.")) {
+            if (!validateField(datetime, datetimeLabel, 'datetime-error-message', null, "datetime-container", "Date Field is required", "Date Field is required")) {
                 isValid++;
             }
 
-            const errorMessage = document.querySelector('.same-password-error-message');
-            if ((passwordValue !== confirmPasswordValue)) {
-                errorMessage.innerText = "The passwords entered do not match. Please ensure that both passwords are identical.";
-                isValid++;
-            } else {
-                errorMessage.innerText = "";
-            }
+
 
             // Submit the form if it is valid
             if (isValid == 0) {
@@ -329,8 +350,10 @@
                 console.log('Gender:', genderValue);
                 console.log('Email:', emailValue);
                 console.log('Phone Number:', phoneNumberValue);
-                console.log('Password:', passwordValue);
-                console.log('Retype Password:', confirmPasswordValue);
+                console.log('doctor:', doctorValue);
+                console.log('datetime:', datetimeValue);
+                console.log('msg:', msgValue);
+
                 console.log('Saving to local storage...');
                 const formData = {
                     firstName: firstNameValue,
@@ -340,11 +363,12 @@
                     gender: genderValue,
                     email: emailValue,
                     phoneNumber: phoneNumberValue,
-                    password: passwordValue,
-                    confirmPassword: confirmPasswordValue
+                    doctor: doctorValue,
+                    datetime: datetimeValue,
+                    msg: msgValue
                 };
                 localStorage.setItem('formData', JSON.stringify(formData));
-                alert("Account Created Successfully")
+                alert("Appointment Booked Successfully");
 
                 resetForm();
                 // document.querySelector("form").submit();
@@ -356,7 +380,7 @@
         function resetForm() {
             isValid = 0;
             // Validate the form values
-            const formAttributes = ["first-name", "last-name", "age", "address", "gender", "email", "phone-number", "password", "retype-password"];
+            const formAttributes = ["first-name", "last-name", "age", "address", "gender", "email", "phone-number", "doctor", "datetime-local", "msg"];
             for (let i = 0; i < formAttributes.length; i++) {
                 document.getElementById(formAttributes[i]).value = "";
             }
